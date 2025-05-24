@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="referrer" content="no-referrer">
+        <title>Student Progress Report</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    
+    <body>
+        <div class="page">
+            <div class="container">
+            <!-- Header Titles -->
+            <div class="header-title-container">
+                <!-- <div class="header">
+                    <h1>Satirpara K. K. Institution</h1>
+                </div> -->
+                
+                <div class="logo-year-container">
+                    <!-- Left Logo -->
+                    <div class="header-logo left-logo">
+                        <!-- <img src="./media/bd-govt-bangla.png" alt="Left Logo"> -->
+                    </div>
+                    
+                    <!-- Academic Year -->
+                    <!-- <h4>Academic Progress Report - 2024</h4> -->
+                    
+                    <!-- Right Logo -->
+                    <div class="header-logo right-logo">
+                        <!-- <img src="./media/bd-edu-board.png" alt="Right Logo"> -->
+                    </div>
+                </div>
+            </div>
+            <!-- Header Fields -->
+            <div class="header-row three-col-row">
+                <div class="header-item three-col" style="max-width: 20%">
+                    <label>Code: </label>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter code">
+                    </div>
+                </div>
+                <div class="header-item three-col">
+                    <label>Name: </label>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="header-item three-col" style="max-width: 20%">
+                    <label>Roll: </label>
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter roll">
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-row">
+                <div class="header-item three-col" style="max-width: 20%">
+                    <label>Class: </label>
+                    <div class="select-input-group">
+                        <select id="classSelector" onchange="updateTable()">
+                            <option value=""></option>
+                            <!-- <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option> -->
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="header-item three-col">
+                    <label>Division: </label>
+                    <div class="select-input-group">
+                        <select id="feedbackSelect">
+                            <option value="">Calculating...</option>
+                            <option value="Excellent">ممتاز</option>
+                            <option value="Very Good">جيد جدأ</option>
+                            <option value="Good">جيد</option>
+                            <option value="Average">متوسط</option>
+                            <option value="Acceptable">مقبول</option>
+                            <option value="Weak">ضعيف</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="header-item three-col" style="max-width: 20%">
+                    <label>Section: </label>
+                    <div class="select-input-group">
+                        <select id="sectionSelect">
+                            <option value=""></option>
+                            <option value="Primary">ابتدائي</option>
+                            <option value="Secondary">اعدادي</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grade Table -->
+            <table id="gradeTable" class="grade-table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Subject</th>
+                        <th>Obtained Number</th>
+                        <th>Grade</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Rows will be generated dynamically -->
+                </tbody>
+            </table>
+
+            <div class="action-row">
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="addRow()">Add Row</button>
+                </div>
+                
+                <div class="total-display">
+                    Total Obtained Number: <span id="totalObtained">0</span>
+                </div>
+
+                <div class="gpa-display">
+                    GPA: <span id="gpa">0.00</span>
+                </div>
+            </div>
+                
+            <div class="bottom-container">
+                <div class="signature-container">
+                    <label class="signature-upload" id="uploadLabel">
+                        Upload Signature
+                        <input type="file" 
+                            id="signatureInput" 
+                            accept="image/*" 
+                            style="display: none;" 
+                            onchange="handleSignatureUpload(event)">
+                    </label>
+                    <div id="signaturePreview"></div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Authorized Signature</div>
+                </div>
+
+                <div class="grade-chart-container">
+                    <div class="grade-chart-wrapper">
+                        <table class="grade-chart">
+                            <thead>
+                                <tr>
+                                    <th>Marks</th>
+                                    <th>Grade</th>
+                                    <th>Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>80-100</td>
+                                    <td>A+</td>
+                                    <td>5.00</td>
+                                </tr>
+                                <tr>
+                                    <td>70-79</td>
+                                    <td>A</td>
+                                    <td>4.00</td>
+                                </tr>
+                                <tr>
+                                    <td>60-69</td>
+                                    <td>A-</td>
+                                    <td>3.50</td>
+                                </tr>
+                                <tr>
+                                    <td>50-59</td>
+                                    <td>B</td>
+                                    <td>3.00</td>
+                                </tr>
+                                <tr>
+                                    <td>40-49</td>
+                                    <td>C</td>
+                                    <td>2.00</td>
+                                </tr>
+                                <tr>
+                                    <td>33-39</td>
+                                    <td>D</td>
+                                    <td>1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>0-32</td>
+                                    <td>F</td>
+                                    <td>0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download and Refresh Button -->
+            <div class="action-buttons">
+                <button class="refresh-btn" onclick="refreshForm()">Refresh</button>
+                <button class="download-btn" onclick="downloadProgressReport()">Download</button>
+            </div>
+        </div>
+
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+        <!-- Student database -->
+        <script src="../studentData.js"></script>
+
+        <script>
+            // Fetch student data by code
+            document.addEventListener('DOMContentLoaded', function() {
+                const codeInput = document.querySelector('.three-col-row .header-item:nth-child(1) input');
+                const nameInput = document.querySelector('.three-col-row .header-item:nth-child(2) input');
+                const codeContainer = codeInput.closest('.input-group');
+                
+                // Create error message element
+                const errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                errorElement.textContent = 'Invalid student code';
+                codeContainer.appendChild(errorElement);
+
+                codeInput.addEventListener('blur', function() {
+                    if(this.value.trim() && !nameInput.value) {
+                    // Show error styling
+                    codeInput.classList.add('input-error');
+                    errorElement.style.display = 'block';
+                    
+                    // Focus but allow movement
+                    setTimeout(() => {
+                        codeInput.focus();
+                    }, 100);
+                    } else {
+                    // Clear error state
+                    codeInput.classList.remove('input-error');
+                    errorElement.style.display = 'none';
+                    }
+                });
+
+                // Clear error when typing
+                codeInput.addEventListener('input', function() {
+                    const code = this.value.trim();
+                    if(studentData[code]) {
+                    nameInput.value = studentData[code];
+                    codeInput.classList.remove('input-error');
+                    errorElement.style.display = 'none';
+                    } else {
+                    nameInput.value = '';
+                    }
+                });
+            });
+
+            const subjects = {
+                '1-5': ['English', 'Bangla', 'Mathematics', 'Bangladesh And Global Studies', 'Science', 'Islam and Moral Studies'],
+                '6-7': ['English 1st Paper', 'English 2nd Paper', 'Bangla 1st Paper', 'Bangla 2nd Paper', 'Mathematics', 'Bangladesh And Global Studies', 'Science', 'Islam and Moral Studies', 'Work and Life Oriented Education', 'Information And Communication Technology', 'Physical Education and Health', 'Arts and Crafts', 'Home Science', 'Agriculture Studies']
+            };
+
+            function getSubjectGroup(classNumber) {
+                return classNumber <= 5 ? '1-5' : '6-7';
+            }
+
+            function createRow(isInitial = false, index = -1) {
+                const row = document.createElement('tr');
+                const classNumber = parseInt(document.getElementById('classSelector').value);
+                const subjectGroup = getSubjectGroup(classNumber);
+                const subjectArray = subjects[subjectGroup];
+                
+                row.innerHTML = `
+                    <td class="serial-number"></td>
+                    <td>
+                        <input type="text" ${isInitial ? `value="${subjectArray[index]}"` : ''}>
+                    </td>
+                    <td><input type="number" min="0" max="100" class="score-input" oninput="calculateGrade(this)"></td>
+                    <td class="grade-cell"></td>
+                    <td><span class="delete-btn" onclick="deleteRow(this)">remove</span></td>
+                `;
+                return row;
+            }
+
+            // Update serial numbers
+            function updateSerialNumbers() {
+                const rows = document.querySelectorAll('#tableBody tr');
+                rows.forEach((row, index) => {
+                    row.querySelector('.serial-number').textContent = index + 1;
+                });
+            }
+
+            function updateTable() {
+                const classNumber = parseInt(document.getElementById('classSelector').value);
+                const subjectGroup = getSubjectGroup(classNumber);
+                const tableBody = document.getElementById('tableBody');
+                const rowCount = classNumber <= 5 ? 6 : 14; // added 1st and 2nd paper for class 6-7
+                
+                // Update section based on class
+                const sectionSelect = document.getElementById('sectionSelect');
+                if (!isNaN(classNumber)) {
+                    sectionSelect.value = classNumber <= 5 ? 'Primary' : 'Secondary';
+                } else {
+                    sectionSelect.value = '';
+                }
+
+                // Clear existing rows and create new ones
+                tableBody.innerHTML = '';
+                for(let i = 0; i < rowCount; i++) {
+                    const row = createRow(true, i);
+                    tableBody.appendChild(row);
+                }
+                updateSerialNumbers();
+                calculateGPA();
+            }
+
+            function addRow() {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.appendChild(createRow());
+                updateSerialNumbers();
+                calculateGPA();
+            }
+
+            function deleteRow(btn) {
+                btn.closest('tr').remove();
+                updateSerialNumbers();
+                calculateGPA();
+            }
+
+            function updateFeedback(gpa) {
+                const feedbackSelect = document.getElementById('feedbackSelect');
+                
+                if (gpa >= 5.0) {
+                    feedbackSelect.value = 'Excellent';
+                } else if (gpa >= 4.0) {
+                    feedbackSelect.value = 'Very Good';
+                } else if (gpa >= 3.5) {
+                    feedbackSelect.value = 'Good';
+                } else if (gpa >= 3.0) {
+                    feedbackSelect.value = 'Average';
+                } else if (gpa >= 2.0) {
+                    feedbackSelect.value = 'Acceptable';
+                } else if (gpa >= 1.0) {
+                    feedbackSelect.value = 'Weak';
+                } else {
+                    feedbackSelect.value = '';
+                }
+            }
+
+            function calculateGrade(input) {
+                const score = parseInt(input.value) || 0;
+                const gradeCell = input.parentElement.nextElementSibling;
+                let grade = '', points = 0;
+
+                if (score >= 80) { grade = 'A+ (5.00)'; points = 5.0; }
+                else if (score >= 70) { grade = 'A (4.00)'; points = 4.0; }
+                else if (score >= 60) { grade = 'A- (3.50)'; points = 3.5; }
+                else if (score >= 50) { grade = 'B (3.00)'; points = 3.0; }
+                else if (score >= 40) { grade = 'C (2.00)'; points = 2.0; }
+                else if (score >= 33) { grade = 'D (1.00)'; points = 1.0; }
+                else { grade = 'F (0.00)'; points = 0; }
+
+                gradeCell.textContent = grade;
+                gradeCell.dataset.points = points;
+                calculateGPA();
+            }
+
+            function calculateGPA() {
+                const grades = document.querySelectorAll('.grade-cell');
+                let totalPoints = 0, count = 0;
+                let totalObtained = 0;
+
+                // Calculate total obtained numbers
+                const scoreInputs = document.querySelectorAll('.score-input');
+                scoreInputs.forEach(input => {
+                    const score = parseInt(input.value) || 0;
+                    totalObtained += score;
+                });
+
+                // Update total obtained display
+                document.getElementById('totalObtained').textContent = totalObtained;
+
+                // Existing GPA calculation
+                grades.forEach(grade => {
+                    if (grade.dataset.points) {
+                        totalPoints += parseFloat(grade.dataset.points);
+                        count++;
+                    }
+                });
+                
+                const gpa = count > 0 ? (totalPoints / count).toFixed(2) : 0.00;
+                document.getElementById('gpa').textContent = gpa;
+
+                updateFeedback(parseFloat(gpa));
+            }
+
+            function handleSignatureUpload(event) {
+                const file = event.target.files[0];
+                const preview = document.getElementById('signaturePreview');
+                const uploadLabel = document.getElementById('uploadLabel');
+
+                if (!file) {
+                    // If user cancels upload, check if we already have a signature
+                    if (!preview.style.backgroundImage.includes('none')) {
+                        uploadLabel.style.display = 'none';
+                    }
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    uploadLabel.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Modified click handler
+            document.getElementById('signaturePreview').addEventListener('click', function() {
+                // Always show file dialog, existing image will be replaced if new file selected
+                document.getElementById('signatureInput').value = null;
+                document.getElementById('signatureInput').click();
+            });
+            // Reset upload label if no file selected
+            document.getElementById('signatureInput').addEventListener('change', function(e) {
+                if(!e.target.files.length) {
+                    document.getElementById('uploadLabel').style.display = 'block';
+                }
+            });
+
+            // Donaload Function
+            async function downloadProgressReport() {
+                const addRowBtn = document.querySelector('.btn-primary');
+                const actionButtons = document.querySelector('.action-buttons'); // Get button container
+                let originalAddRowStyle = '';
+                try {
+                    // Store original styles
+                    originalAddRowStyle = addRowBtn.style.cssText;
+
+                    // Hide elements for capture
+                    addRowBtn.classList.add('hide-for-capture');
+                    actionButtons.style.display = 'none'; // Hide both buttons
+
+                    const page = document.querySelector('.page');
+
+                    // CrossOrigin anonymous for background image element
+                    const bgImage = new Image();
+                    bgImage.crossOrigin = "Anonymous";
+                    bgImage.src = './media/background.png';
+
+                    const canvas = await html2canvas(page, {
+                        useCORS: true,
+                        allowTaint: true,
+                        width: 210 * 3.78,
+                        height: 297 * 3.78,
+                        scale: 1.5,
+                        logging: true,
+                        backgroundColor: null
+                    });
+
+                    // Get the student code
+                    const codeInput = document.querySelector('.three-col-row .header-item:nth-child(1) input');
+                    const rawCode = codeInput.value.trim();
+                    // Extract just the last part (8970)
+                    const studentId = rawCode.split('/').pop() || 'progress'; 
+                    
+                    // Get student name
+                    const nameInput = document.querySelector('.three-col-row .header-item:nth-child(2) input');
+                    const studentName = (nameInput.value.trim() || 'report').replace(/\s+/g, '_');
+                    
+                    // Create filename in this format: "8970-Seaum_Siddiqui-PR-24.jpeg"
+                    const filename = `${studentId}-${studentName}-PR-24.png`;
+
+                    // Convert to JPEG
+                    const link = document.createElement('a');
+                    link.download = filename;
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    link.click();
+
+                } catch (error) {
+                    console.error('Error generating report:', error);
+                } finally {
+                    // Always restore elements
+                    actionButtons.style.display = 'flex'; // Show buttons again
+                    addRowBtn.classList.remove('hide-for-capture');
+                }
+            }
+            
+            function refreshForm() {
+                // Clear all input fields except header title and signature
+                document.querySelectorAll('input[type="text"]:not(#headerTitle, #signatureField), input[type="number"]')
+                    .forEach(input => {
+                        if (input.id !== 'headerTitle' && input.id !== 'signatureField') {
+                            input.value = '';
+                        }
+                    });
+                // Reset all dropdowns
+                document.getElementById('classSelector').value = '';
+                document.getElementById('feedbackSelect').value = '';
+                document.getElementById('sectionSelect').value = '';
+
+                // Clear grade table
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = '';
+                
+                // Reset calculated values
+                document.getElementById('totalObtained').textContent = '0';
+                document.getElementById('gpa').textContent = '0.00';
+
+                // Reset feedback message
+                document.getElementById('feedbackSelect').selectedIndex = 0;
+                
+                // Load table on initial state
+                updateTable();
+            }
+
+            // Initialize table on load
+            window.onload = updateTable;
+        </script>
+    </body>
+</html>
