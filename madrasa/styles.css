@@ -9,14 +9,14 @@ body {
 }
 
 .error-message {
-  color: #d9534f;
-  font-size: 0.8rem;
-  margin-top: 0.3rem;
-  display: none;
+    color: #d9534f;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
 }
 
 .input-error {
-  border-color: #d9534f;
+    border-color: #d9534f;
 }
 
 .page {
