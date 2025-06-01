@@ -1,0 +1,555 @@
+body {
+    margin: 0;
+    padding: 3rem;
+    background: rgb(56, 54, 54) !important;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.input-error {
+  border-color: #d9534f;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    padding: 30px;
+    background: transparent;
+
+    flex: 1;
+    min-height: 0; /* Allows shrinking */
+    overflow: hidden; /* Contains content */
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Header Container */
+.header-title-container {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    margin-top: 15px;
+    position: relative;
+}
+
+/* Logo and Year Container */
+.logo-year-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header Title */
+.header-title-select {
+    font-size: 2rem; /* Match h1 size */
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    color: inherit;
+    line-height: 1.2;
+}
+
+.header-title-select:hover {
+    color: #15354fdf; /* Change color on hover for better UX */
+}
+
+/* Remove default dropdown arrow in most browsers */
+.header-title-select::-ms-expand {
+    display: none;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+    .header-title-select {
+        text-indent: 0.01px;
+        text-overflow: '';
+    }
+}
+
+/* Center the select text */
+.header-title-select option {
+    text-align: center;
+}
+
+/* Style for when the select is focused */
+.header-title-select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Remove autofill styling */
+.header-title-select:-webkit-autofill,
+.header-title-select:-webkit-autofill:hover, 
+.header-title-select:-webkit-autofill:focus {
+    -webkit-text-fill-color: inherit;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Academic Year Text */
+.logo-year-container h4 {
+    margin: 4rem 0 0 0;
+    font-size: 1.3rem;
+    color: #555c5c;
+    font-weight: 400;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Logo Styles */
+.header-logo {
+    margin-top: -1.5rem;
+    width:80px;
+    height:80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.header {
+    text-align: center; /* Center the heading */
+    page-break-inside: avoid;
+    margin-bottom: -2.5rem;
+}
+
+/* Header Fields Section */
+.header-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.header-item.three-col {
+    flex: 1; /* Each takes equal space */
+    min-width: 0; /* To prevent overflow */
+}
+
+.header-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Labels take natural width */
+.header-item label {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #34495e;
+    transform: translateY(-1px); 
+    padding-bottom: 1px;
+}
+
+/* Input containers to fill remaining space */
+.input-group, 
+.select-input-group {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+/* Input fields */
+select, 
+input[type="text"], 
+input[type="number"] {
+    width: 100%;
+    padding: 0.2rem 0 0.05rem 0; /* To educed top/bottom padding */
+    margin: 0;
+    border: none;
+    border-bottom: 2px solid #f0f2f4;
+    background: transparent;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+    line-height: 1.2;
+    box-sizing: border-box;
+    position: relative;
+    top: -1px;
+}
+
+select:focus, 
+input[type="text"]:focus, 
+input[type="number"]:focus {
+    border-bottom: 2px solid #15354fdf;
+}
+
+/* Adjust select padding for dropdown arrow - reduced gap */
+select {
+    padding-right: 1.5rem;
+    background-position: right 0.2rem center; /* Move arrow closer */
+}
+
+/* For select + input combinations - tighter grouping */
+.select-input-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.3rem; /* Reduced gap */
+    padding-bottom: 1px;
+}
+
+
+/* Grade Table */
+.grade-table {
+    margin-top: 0.6rem;
+    width: 100%;
+    border-collapse: collapse;
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.05); */
+    border: 1px solid #dee2e6;
+}
+
+.grade-table th,
+.grade-table td {
+    padding: 0; /* Keep your original padding */
+    border: 1px solid #dee2e6;
+    position: relative;
+    text-align: center; /* Default center alignment */
+    vertical-align: middle; /* vertical centering */
+}
+
+/* Column widths */
+.grade-table th:nth-child(1),
+.grade-table td:nth-child(1) { /* Serial column */
+    width: 5%;
+    text-align: center;
+}
+
+/* .grade-table th:nth-child(2), */
+.grade-table td:nth-child(2) { /* Subject column */
+    width: 46%;
+    text-align: left;
+}
+
+.grade-table th:nth-child(3),
+.grade-table td:nth-child(3) { /* Obtained Number */
+    width: 20%;
+}
+
+.grade-table th:nth-child(4),
+.grade-table td:nth-child(4) { /* Grade */
+    width: 11%;
+}
+
+.grade-table th:nth-child(5),
+.grade-table td:nth-child(5) { /* Remarks */
+    width: 11%;
+}
+
+/* Header styling */
+.grade-table th {
+    background-color: #15354fdf;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem; 
+}
+
+/* Input fields */
+.grade-table td input[type="text"],
+.grade-table td input[type="number"] {
+    width: 100%;
+    height: auto;
+    padding: 0.5rem; 
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    background: transparent;
+    transition: background-color 0.2s ease;
+    text-align: inherit; /* follow column alignment */
+}
+
+/* Delete button positioning */
+.delete-btn {
+    display: inline-block;
+    margin: 0 auto;
+    opacity: 0;
+    cursor: pointer;
+    color: #a81100;
+    background: none;
+    border: none;
+    padding: 0 8px;
+    font-size: 1.1rem;
+    transition: opacity 0.3s ease;
+    vertical-align: middle;
+}
+
+/* Hover effects */
+.grade-table tr:hover {
+    background-color: #f4f0f0;
+}
+
+.grade-table tr:hover .delete-btn {
+    opacity: 1;
+}
+
+/* Zebra striping */
+.grade-table tr:nth-child(even) {
+    background-color: rgba(178, 214, 255, 0.11)
+}
+
+/* Add row button and GPA container */
+.action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #15354fdf;
+    border: 1px solid #dee2e6;
+}
+
+.button-group {
+    margin: 0;
+}
+
+.total-display {
+    font-weight: bold;
+    color: white;
+    margin-left: 6.5rem;
+}
+
+/* GPA Display */
+.gpa-display {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    /* margin: 0.5rem 0; */
+}
+
+/* Bottom Container (signature + grade chart) */
+.bottom-container {
+    margin: auto 0 5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: transparent;
+}
+
+
+/* Grade Chart Container - Reduced Size */
+.grade-chart-container {
+    width: 250px; /* Reduced from 300px */
+    margin-left: 1rem; /* Reduced from 2rem */
+    background: transparent;
+    font-size: 0.7rem; /* Added to scale all text */
+}
+
+.grade-chart-wrapper {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    background: transparent;
+}
+
+.grade-chart {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+.grade-chart th,
+.grade-chart td {
+    padding: 3px; /* Reduced from 6px */
+    text-align: center;
+    border: none;
+    line-height: 1.2; /* Added for better readability */
+}
+
+.grade-chart th {
+    color: #15354fdf;
+    font-weight: 600;
+    border-bottom: 1px solid #15354fdf;
+    padding: 4px; /* Reduced from 8px */
+}
+
+.grade-chart tr {
+    border-bottom: 1px solid #eee;
+}
+
+.grade-chart tr:last-child {
+    border-bottom: none;
+}
+
+/* Signature Container (updated) */
+.signature-container {
+    width: 250px;
+    margin-top: auto;
+    position: relative;
+    /* margin-left: 3rem; */
+}
+
+.signature-upload {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #15354fdf;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 8px 12px;
+    border: 1px solid #15354fdf;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.signature-upload:hover {
+    color: #fff;
+    background-color: #154f21;
+}
+
+#signaturePreview {
+    width: 250px;
+    height: 100px;
+    margin: 0 auto 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative;
+    z-index: 2;
+}
+
+.signature-line {
+    position: absolute;
+    bottom: 30px; /* Moved line lower */
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #737577;
+}
+
+.signature-label {
+    position: absolute;
+    margin-top: -1.8rem; /* Adjusted to move label up */
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-weight: bolder;
+
+    white-space: nowrap; 
+    display: inline-block; 
+    text-align: center; 
+}
+
+/* Shared Button Styles */
+.action-buttons {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 60em;
+    z-index: 1000;
+}
+
+.download-btn,
+.refresh-btn {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Download Button Specific */
+.download-btn {
+    background-color: #15354fdf;
+}
+
+/* Refresh Button Specific */
+.refresh-btn {
+    background-color: #2c3e50; /* Dark blue-gray color */
+}
+
+/* Hover Effects */
+.download-btn:hover {
+    background-color: #154f21;
+    transform: scale(1.05);
+}
+
+.refresh-btn:hover {
+    background-color: #34495e;
+    transform: scale(1.05);
+}
+
+/* Hide Add Row button for Capture */
+.hide-for-capture {
+    visibility: hidden;
+    position: absolute; /* Remove from layout flow */
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: none;
+    }
+    .page {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+    }
+    .action-buttons {
+        display: none !important;
+    }
+}
+
+/* @font-face {
+    font-family: 'Proxima Nova';
+    src: url('/fonts/ProximaNova-Reg-webfont.woff2') format('woff2');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/fonts/ProximaNova-Bold-webfont.woff2') format('woff2');
+    font-weight: bold;
+} */
