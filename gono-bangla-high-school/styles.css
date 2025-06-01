@@ -96,7 +96,7 @@ body {
 }
 
 .header-title-select:hover {
-    color: #15354fdf; /* Change color on hover for better UX */
+    color: #154f21; /* Change color on hover for better UX */
 }
 
 /* Remove default dropdown arrow in most browsers */
@@ -221,7 +221,7 @@ input[type="number"] {
 select:focus, 
 input[type="text"]:focus, 
 input[type="number"]:focus {
-    border-bottom: 2px solid #15354fdf;
+    border-bottom: 2px solid #154f21;
 }
 
 /* Adjust select padding for dropdown arrow - reduced gap */
@@ -287,7 +287,7 @@ select {
 
 /* Header styling */
 .grade-table th {
-    background-color: #15354fdf;
+    background-color: #154f21;
     color: white;
     font-weight: 600;
     padding: 0.6rem; 
@@ -333,7 +333,7 @@ select {
 
 /* Zebra striping */
 .grade-table tr:nth-child(even) {
-    background-color: rgba(178, 214, 255, 0.11)
+    background-color: #618d3e11;
 }
 
 /* Add row button and GPA container */
@@ -343,7 +343,7 @@ select {
     align-items: center;
     margin: 0.5rem 0;
     padding: 0.5rem;
-    background-color: #15354fdf;
+    background-color: #154f21;
     border: 1px solid #dee2e6;
 }
 
@@ -404,9 +404,9 @@ select {
 }
 
 .grade-chart th {
-    color: #15354fdf;
+    color: #154f21;
     font-weight: 600;
-    border-bottom: 1px solid #15354fdf;
+    border-bottom: 1px solid #154f21;
     padding: 4px; /* Reduced from 8px */
 }
 
@@ -429,11 +429,11 @@ select {
 .signature-upload {
     display: block;
     margin-bottom: 0.5rem;
-    color: #15354fdf;
+    color: #154f21;
     cursor: pointer;
     transition: color 0.3s ease;
     padding: 8px 12px;
-    border: 1px solid #15354fdf;
+    border: 1px solid #154f21;
     border-radius: 4px;
     text-align: center;
 }
@@ -500,7 +500,7 @@ select {
 
 /* Download Button Specific */
 .download-btn {
-    background-color: #15354fdf;
+    background-color: #154f21;
 }
 
 /* Refresh Button Specific */
